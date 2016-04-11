@@ -1,8 +1,4 @@
-# Menus
-
-This is a basic demo that demonstrates the flexibility of electron's Menus
-API, there aree three menus bound to three areas in the page.
-
+# Paradigmas
 
 ## APIs
 
