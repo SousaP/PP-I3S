@@ -1,0 +1,5 @@
+Danio rerio	Danio_rerio_dictionary	Danio_rerio_fasta	Danio_rerio-BIOGRID
+Danio rerio	Danio_rerio_dictionary	Danio_rerio_fasta	Danio_rerio-another_interactome
+Drosophila melanogaster	Drosophila_melanogaster_dictionary.txt	Drosophila_melanogaster_FASTA.txt	Drosophila_melanogaster_BIOGRID.txt
+Another species	XXX	XXX
+Yet another species	YYY	YYY
