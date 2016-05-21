@@ -1,0 +1,44 @@
+Task 1: Preliminary info
+    - ask for the name of a species from a list (species_list file)
+    - ask for the name of a gene from a list (actually from the dictionary for that species)
+    - use the appropriate dictionary for that species (how do we tell which of the files is the appropriate dictionary?; not hardcoded; we need another file with those correspondences named correspondences)
+    - look for the corresponding "official" synonym (first column in the dictinary; remarkynonyms may be long and have blank spaces, for instance)
+    - dictionaries will have comment lines marked with # to be ignored
+    - ask for the interactomes to be used (could be more more than one) from a list of available interactomes for that species (listed in the file correspondences; 4th column)
+    - parse the appropriate interactome file(s) for the "official" synonym (first column in the dictionary) and retrieve the corresponding lines
+    - produce a temporary file with the names of the genes that interact with that gene in that species (including the initial gene) called initial_interactions_temp
+    - use the names listed in the file initial_interactions_temp to retrieve the corresponding sequences from a modified FASTA file (Fasta file with comment lines marked with #; more than one sequence may have the same name; retrieve all)
+
+
+Task 2: Pre-processing of the file with the protein sequences (the one with fasta in the name)
+
+    - ask for the name of another species from the species_list file
+    - look for the appropriate file containing the protein sequences (look in correspondence file). We are using a modified FASTA file thus we need to solve some problems.
+
+    - Problems to be solved:
+        - Presence of comment lines in the file (always marked with #)
+        - Presence of special characters in the sequence names
+        - Names are not unique
+        - Remember: h and H are two different genes!!!!
+
+    - Solutions:
+        - create a temporary copy of the original file
+        - Remove all lines that start with #
+        - Substitute names by a code such as seq1, seq2 ... seqn and store the correspondences in a temporary file called codestemp.
+        - Do not forget to keep the > symbol otherwise the procesed file is not a FASTA file. Call the temporary file fastatemp
+
+Task 3:
+    
+Preparing the BLAST database
+    - use the fastatemp file;
+    - use the following command that calls the executable makeblastdb: makeblastdb -in fastatemp -dbtype prot -parse_seqids -out fastatempdb
+    - because the file was pre-processed there are no problems
+
+Task 4:
+
+Running Blast
+
+    - ask for the desired expect value: use 0.05 as default
+    - ask for the desired number of descriptions: use 500 (meaning no limit) as default
+    - use the following command that calls the executable blastp: blastp -query queryname -db fastatempdb -evalue $expect -num_descriptions $descriptions -outfmt 6 -out blastoutput
+
