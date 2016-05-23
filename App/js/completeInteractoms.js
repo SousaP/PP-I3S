@@ -1,11 +1,11 @@
- function completeInteractoms(){
-	$("#ilElem").select2('val', 'All');
-	$("#ilElem").empty();
-	$('#ilElem').append("<option></option>");
+ function completeInteractoms(filter, master){
+	$(filter).select2('val', 'All');
+	$(filter).empty();
+	$(filter).append("<option></option>");
 	console.log("Deleting interactoms list");
     
-	var name = $('#slElem').val();
-	console.log("Value is: " + $('#glElem').val());
+	var name = $(master).val();
+	console.log("Value is: " + $(master).val());
 	//var filename = name.split(' ').join('_');
 
 	fs = require('fs');
@@ -18,7 +18,7 @@
 	  
 	  for(var file = 0; file < files.length; file++){
 		  if(files[file].indexOf(name) > -1){
-			  $('#ilElem').append("<option value=" + name + ">" + files[file] + "</option>");
+			  $(filter).append("<option value=" + name + ">" + files[file] + "</option>");
 			  console.log("Appended the file: " + files[file]);
 		  }
 		  

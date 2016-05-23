@@ -1,11 +1,11 @@
-function completeGenes(){
-	$("#glElem").select2('val', 'All');
-	$('#glElem').empty();
-	$('#glElem').append("<option></option>");
+function completeGenes(filter, master){
+	$(filter).select2('val', 'All');
+	$(filter).empty();
+	$(filter).append("<option></option>");
 	console.log("Deleting genes list");
 	//$('#glElem').val('');
-	var name = $('#slElem').val();
-	console.log("Value is: " + $('#slElem').val());
+	var name = $(master).val();
+	console.log("Value is: " + $(master).val());
 	//var filename = name.split(' ').join('_');
 
 	fs = require('fs');
@@ -18,7 +18,7 @@ function completeGenes(){
 		  
 	  for(var file = 0; file < files.length; file++){
 		  if(files[file].indexOf(name) > -1){
-			  $('#glElem').append("<option value=" + name + ">" + files[file] + "</option>");
+			  $(filter).append("<option value=" + name + ">" + files[file] + "</option>");
 			  console.log("Appended the file: " + files[file]);
 		  }
 		  
