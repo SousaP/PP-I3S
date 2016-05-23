@@ -1,13 +1,19 @@
 Task 1: Preliminary info
-    - ask for the name of a species from a list (species_list file)
+    ✓ ask for the name of a species from a list (species_list file)
     - ask for the name of a gene from a list (actually from the dictionary for that species)
-    - use the appropriate dictionary for that species (how do we tell which of the files is the appropriate dictionary?; not hardcoded; we need another file with those correspondences named correspondences)
-    - look for the corresponding "official" synonym (first column in the dictinary; remarkynonyms may be long and have blank spaces, for instance)
+    - use the appropriate dictionary for that species (how do we tell which of the files is the appropriate dictionary?; 
+	not hardcoded; we need another file with those correspondences named correspondences)
+    - look for the corresponding "official" synonym (first column in the dictinary; remarkynonyms may be long and have blank spaces,
+	for instance)
     - dictionaries will have comment lines marked with # to be ignored
-    - ask for the interactomes to be used (could be more more than one) from a list of available interactomes for that species (listed in the file correspondences; 4th column)
-    - parse the appropriate interactome file(s) for the "official" synonym (first column in the dictionary) and retrieve the corresponding lines
-    - produce a temporary file with the names of the genes that interact with that gene in that species (including the initial gene) called initial_interactions_temp
-    - use the names listed in the file initial_interactions_temp to retrieve the corresponding sequences from a modified FASTA file (Fasta file with comment lines marked with #; more than one sequence may have the same name; retrieve all)
+    - ask for the interactomes to be used (could be more more than one) from a list of available interactomes for that species 
+	(listed in the file correspondences; 4th column)
+    - parse the appropriate interactome file(s) for the "official" synonym (first column in the dictionary) and retrieve 
+	the corresponding lines
+    - produce a temporary file with the names of the genes that interact with that gene in that species (including the initial gene) 
+	called initial_interactions_temp
+    - use the names listed in the file initial_interactions_temp to retrieve the corresponding sequences from a modified 
+	FASTA file (Fasta file with comment lines marked with #; more than one sequence may have the same name; retrieve all)
 
 
 Task 2: Pre-processing of the file with the protein sequences (the one with fasta in the name)
