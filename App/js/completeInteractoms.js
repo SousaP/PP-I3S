@@ -1,14 +1,10 @@
  function completeInteractoms(){
+	$("#ilElem").select2('val', 'All');
 	$("#ilElem").empty();
-	console.log("Deleting interactoms list");
 	$('#ilElem').append("<option></option>");
-	$('#ilElem').each(function () {
-    if (this.defaultSelected) {
-        this.selected = true;
-        return false;
-    }
-	});
-	var name = $('#glElem').val();
+	console.log("Deleting interactoms list");
+    
+	var name = $('#slElem').val();
 	console.log("Value is: " + $('#glElem').val());
 	//var filename = name.split(' ').join('_');
 
