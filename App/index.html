@@ -12,6 +12,7 @@
 	<script src="js/readSpecies.js"></script>
 	<script src="js/completeGenes.js"></script>
 	<script src="js/completeInteractoms.js"></script>
+	<script src="js/getCorrespondences.js"></script>
 	<script src="js/select2.min.js"></script>
 </head>
 <body>
@@ -20,7 +21,7 @@
 
 			<h1 class="jumbotron-title">Automatic comparison of Interactomes </h1>
 			<p class="lead">Paradigmas da Programação</p>
-			<div class="col-md-6">
+			<div class="col-md-6" id="s1">
 			<h2> Species 1 </h2>
 				<div class="select2-wrapper">
 					<select label="Species List" class="form-control input-lg select2" dir="rtl" 
@@ -34,14 +35,11 @@
 					</select>
 				</div>
 				<div class="select2-wrapper">
-					<select label="Interactoms List" class="form-control input-lg select2" dir="rtl" id="ilElem">
+					<select label="Interactoms List" class="form-control input-lg select2" dir="rtl" id="ilElem" 
+					onchange="getCorrespondences('#glElem', '#ilElem')">
 						<option></option>
 					</select>
 				</div>
-				<div style='height:80px; overflow:auto;'>
-					content here fjghkhjfgkhgkjhldsfkdsfjfdhsjkhfjskhjdkhsflsdlfhdsjfhdjkshfjdkshjldsfh
-					fdsjfjslhfjdlshfjdshfjsdhfjsdhfjkdlshfjdshjfhsdjhfdjshfjdslhfjfsdhl
-					</div>
 			</div>
 		
 

@@ -14,12 +14,13 @@ Task 1: Preliminary info
 	(listed in the file correspondences; 4th column)
 	(ficheiro correspondences não é necessário, basta por o ficheiro interactomes na pasta interactomes com o nome 
 	da espécie no nome)
-    - parse the appropriate interactome file(s) for the "official" synonym (first column in the dictionary) and retrieve 
+    ✓ parse the appropriate interactome file(s) for the "official" synonym (first column in the dictionary) and retrieve 
 	the corresponding lines
-    - produce a temporary file with the names of the genes that interact with that gene in that species (including the initial gene) 
+    ✓ produce a temporary file with the names of the genes that interact with that gene in that species (including the initial gene) 
 	called initial_interactions_temp
-    - use the names listed in the file initial_interactions_temp to retrieve the corresponding sequences from a modified 
+    ✓ use the names listed in the file initial_interactions_temp to retrieve the corresponding sequences from a modified 
 	FASTA file (Fasta file with comment lines marked with #; more than one sequence may have the same name; retrieve all)
+	(template para fasta name is species_fasta.txt' // Está a verificar para upper e lower case)
 
 
 Task 2: Pre-processing of the file with the protein sequences (the one with fasta in the name)
