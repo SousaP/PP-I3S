@@ -1,13 +1,19 @@
 Task 1: Preliminary info
     ✓ ask for the name of a species from a list (species_list file)
-    - ask for the name of a gene from a list (actually from the dictionary for that species)
-    - use the appropriate dictionary for that species (how do we tell which of the files is the appropriate dictionary?; 
+    ✓ ask for the name of a gene from a list (actually from the dictionary for that species)
+	(dizer ao prof que os documentos tem de estar minimamente coerentes, nada de espaços vs tabs e etc e que com 50000 linhas
+	de txt's não esperem muita eficiência --> danio rerio é um exemplo op)
+    ✓ use the appropriate dictionary for that species (how do we tell which of the files is the appropriate dictionary?; 
 	not hardcoded; we need another file with those correspondences named correspondences)
-    - look for the corresponding "official" synonym (first column in the dictinary; remarkynonyms may be long and have blank spaces,
+	(basta que o nome seja nome da especie - separado por _ - + _dictionary.txt)
+    ✓ look for the corresponding "official" synonym (first column in the dictinary; remarkynonyms may be long and have blank spaces,
 	for instance)
-    - dictionaries will have comment lines marked with # to be ignored
-    - ask for the interactomes to be used (could be more more than one) from a list of available interactomes for that species 
+	(o official synonym fica guardado no value da option do dropdown)
+    ✓ dictionaries will have comment lines marked with # to be ignored
+    ✓ ask for the interactomes to be used (could be more more than one) from a list of available interactomes for that species 
 	(listed in the file correspondences; 4th column)
+	(ficheiro correspondences não é necessário, basta por o ficheiro interactomes na pasta interactomes com o nome 
+	da espécie no nome)
     - parse the appropriate interactome file(s) for the "official" synonym (first column in the dictionary) and retrieve 
 	the corresponding lines
     - produce a temporary file with the names of the genes that interact with that gene in that species (including the initial gene) 

@@ -18,7 +18,7 @@
 	  
 	  for(var file = 0; file < files.length; file++){
 		  if(files[file].indexOf(name) > -1){
-			  $(filter).append("<option value=" + name + ">" + files[file] + "</option>");
+			  $(filter).append("<option value=" + files[file] + ">" + files[file] + "</option>");
 			  console.log("Appended the file: " + files[file]);
 		  }
 		  

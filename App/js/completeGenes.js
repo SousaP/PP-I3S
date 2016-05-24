@@ -8,20 +8,32 @@ function completeGenes(filter, master){
 	console.log("Value is: " + $(master).val());
 	//var filename = name.split(' ').join('_');
 
-	fs = require('fs');
+	var fs = require('fs');
 
-	fs.readdir(path.join(__dirname, 'resources/fasta/'), function (err, files) {
-	  if (err) {
-		console.log(err);
-		return;
-	  }
-		  
-	  for(var file = 0; file < files.length; file++){
-		  if(files[file].indexOf(name) > -1){
-			  $(filter).append("<option value=" + name + ">" + files[file] + "</option>");
-			  console.log("Appended the file: " + files[file]);
-		  }
-		  
+	var path = require('path');
+	console.log(__dirname + 'resources/dictionary/' + name + '_dictionary.txt');
+	var filePath = path.join(__dirname, 'resources/dictionary/' + name + '_dictionary.txt');
+
+	fs.readFile(filePath, {encoding: 'utf-8'}, function(err,data){
+		if (!err){
+			console.log(data);
+		var lines = data.split('\n');
+		for(var line = 0; line < lines.length; line++){
+			var temp = lines[line];
+			if(temp.indexOf("#") > -1 || temp == ""){
+				
+			}
+			else if(temp.split(' ').length == 1){
+				$(filter).append("<option value=" + temp + ">" + temp + "</option>");
+			}
+			else{
+				var spaces = temp.split('\t');
+				$(filter).append("<option value=" + spaces[0] + ">" + spaces[1] + "</option>");
+			}
 		}
+		}else{
+			console.log(err);
+		}
+
 	});
 }
