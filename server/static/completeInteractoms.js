@@ -8,7 +8,7 @@
 	console.log("Value is: " + $(master).val());
 	//var filename = name.split(' ').join('_');
 
-	fs = require('fs');
+/*
 
 	fs.readdir(path.join(__dirname, 'resources/BIOGRID/'), function (err, files) {
 	  if (err) {
@@ -23,5 +23,5 @@
 		  }
 		  
 		}
-	});
+	}); */
 }

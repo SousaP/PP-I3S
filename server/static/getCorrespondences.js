@@ -5,11 +5,10 @@
 	var filePath = path.join(__dirname, 'resources/fasta/' + specie + '_fasta.txt');
 	var fileName = path.join(__dirname, 'resources/temp/modified_fasta_temp.txt');
 	var def = genes.split('\n');
-	
-	
-	fs.readFile(filePath, {encoding: 'utf-8'}, function(err,data){
-		if (!err){
-			var output = "# Temporary Fasta file\n\n";
+
+	$(function() {
+	$.get('fasta/' + specie + '_fasta.txt', function(data) {
+	var output = "# Temporary Fasta file\n\n";
 			console.log(data);
 			var lines = data.split('>');
 			console.log(lines);
@@ -26,18 +25,9 @@
 				}
 				
 			}
-			
-			fs.writeFile(fileName, output, function (err) {
-			   if(err){
-				   alert("An error ocurred creating the file "+ err.message)
-				   }
-			   });
-			
-		}else{
-			console.log(err);
-		}
-
 	});
+});
+	
  }
  
  function getCorrespondences(filter, master){
@@ -47,15 +37,10 @@
 	console.log("Gene is: " + gene + " --> File is: " + interactome);
 	//var filename = name.split(' ').join('_');
 
-	var fs = require('fs');
 
-	var path = require('path');
-	console.log(__dirname + 'resources/BIOGRID/' + interactome);
-	var filePath = path.join(__dirname, 'resources/BIOGRID/' + interactome);
-	var fileName = path.join(__dirname, 'resources/temp/initial_interactions_temp.txt');
-
-	fs.readFile(filePath, {encoding: 'utf-8'}, function(err,data){
-		if (!err){
+	$(function() {
+	$.get('BIOGRID/' + interactome, function(data) {
+	var output = "# Temporary Fasta file\n\n";
 			var output = gene + '\n';
 			console.log(data);
 			var lines = data.split('\n');
@@ -73,18 +58,9 @@
 			var element = document.createElement("pre");
 			element.textContent = output;
 			document.getElementById('s1').appendChild(element);
-			
-			fs.writeFile(fileName, output, function (err) {
-			   if(err){
-				   alert("An error ocurred creating the file "+ err.message)
-				   }
-			   });
-			
+					
 			createFastaFile(output);
-			
-		}else{
-			console.log(err);
-		}
-
 	});
+});
+
 }
