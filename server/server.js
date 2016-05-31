@@ -8,9 +8,9 @@ server.connection({ port: process.env.PORT || 3010 });
 
 server.route({
     method: 'GET',
-    path: '/pprog1',
+    path: '/{page}',
     handler: function (request, reply) {
-        reply.file('home.html');
+        reply.file(request.params.page + '.html');
     }
 });
 
@@ -19,6 +19,22 @@ server.route({
     path: '/static/{filename}',
      handler: function (request, reply) {
         reply.file('static/' + request.params.filename);
+    }
+});
+
+server.route({
+    method: 'GET',
+    path: '/resources/{filename}',
+     handler: function (request, reply) {
+        reply.file('resources/' + request.params.filename);
+    }
+});
+
+server.route({
+    method: 'GET',
+    path: '/{folder}/{filename}',
+     handler: function (request, reply) {
+        reply.file('resources/' + request.params.folder + '/' + request.params.filename);
     }
 });
 

@@ -7,16 +7,8 @@ function completeGenes(filter, master){
 	var name = $(master).val();
 	console.log("Value is: " + $(master).val());
 	//var filename = name.split(' ').join('_');
-
-	var fs = require('fs');
-
-	var path = require('path');
-	console.log(__dirname + 'resources/dictionary/' + name + '_dictionary.txt');
-	var filePath = path.join(__dirname, 'resources/dictionary/' + name + '_dictionary.txt');
-
-	fs.readFile(filePath, {encoding: 'utf-8'}, function(err,data){
-		if (!err){
-			console.log(data);
+$(function() {
+	$.get('dictionary/' + name + '_dictionary.txt', function(data) {
 		var lines = data.split('\n');
 		for(var line = 0; line < lines.length; line++){
 			var temp = lines[line];
@@ -31,9 +23,8 @@ function completeGenes(filter, master){
 				$(filter).append("<option value=" + spaces[0] + ">" + spaces[1] + "</option>");
 			}
 		}
-		}else{
-			console.log(err);
-		}
-
 	});
+});
+
+
 }
