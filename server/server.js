@@ -4,11 +4,11 @@ const Hapi = require('hapi');
 var fs = require('fs');
 
 const server = new Hapi.Server();
-server.connection({ port: process.env.PORT || 3000 });
+server.connection({ port: process.env.PORT || 3010 });
 
 server.route({
     method: 'GET',
-    path: '/',
+    path: '/pprog1',
     handler: function (request, reply) {
         reply.file('home.html');
     }
