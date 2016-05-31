@@ -9,6 +9,7 @@
 	<link rel="stylesheet" href="css/select2-bootstrap.css">
 	<link rel="stylesheet" href="css/gh-pages.css">
 	<script>window.$ = window.jQuery = require('./js/jquery.js');</script>
+	<script src="js/jquery.js"></script>
 	<script src="js/readSpecies.js"></script>
 	<script src="js/completeGenes.js"></script>
 	<script src="js/completeInteractoms.js"></script>
@@ -20,21 +21,24 @@
 		<div class="col-md-12">
 
 			<h1 class="jumbotron-title">Automatic comparison of Interactomes </h1>
-			<p class="lead">Paradigmas da Programação</p>
+			<p class="lead">Faculdade de Engenharia da Universidade do Porto</p>
 			<div class="col-md-6" id="s1">
 			<h2> Species 1 </h2>
-				<div class="select2-wrapper">
+				<div class="select2-wrapper" >
+				<h2>Select a Species</h2>
 					<select label="Species List" class="form-control input-lg select2" dir="rtl" 
 					onchange="completeGenes('#glElem', '#slElem');completeInteractoms('#ilElem', '#slElem')" id="slElem">
 						<option></option>
 					</select>
 				</div>
 				<div class="select2-wrapper">
+				<h2>Select a gene</h2>
 					<select label="Genes List" class="form-control input-lg select2" dir="rtl" id="glElem">
 						<option></option>
 					</select>
 				</div>
-				<div class="select2-wrapper">
+				<div class="select2-wrapper interectlist">
+				<h2>Select a Interactions file</h2>
 					<select label="Interactoms List" class="form-control input-lg select2" dir="rtl" id="ilElem" 
 					onchange="getCorrespondences('#glElem', '#ilElem')">
 						<option></option>
@@ -47,18 +51,22 @@
 			<div class="col-md-6">
 			<h2> Species 2 </h2>
 				<div class="select2-wrapper">
+				<h2>Select a Species</h2>
 					<select label="Species List" class="form-control input-lg select2" dir="rtl" 
 					onchange="completeGenes('#glElem2', '#slElem2');completeInteractoms('#ilElem2', '#slElem2')" id="slElem2">
 						<option></option>
 					</select>
 				</div>
 				<div class="select2-wrapper">
+				<h2>Select a gene</h2>
 					<select label="Genes List" class="form-control input-lg select2" dir="rtl" id="glElem2">
 						<option></option>
 					</select>
 				</div>
 				<div class="select2-wrapper">
-					<select label="Interactoms List" class="form-control input-lg select2" dir="rtl" id="ilElem2">
+				<h2>Select a Interactions file</h2>
+					<select label="Interactoms List" class="form-control input-lg select2" dir="rtl" id="ilElem2"
+					onchange="getCorrespondences('#glElem', '#ilElem')">
 						<option></option>
 					</select>
 				</div>
@@ -66,16 +74,19 @@
 			</div>
 			</div>
 				<a href="#" class="btn btn-outline btn-lg">Compare</a>
-				<a href="#" class="btn btn-outline btn-lg">Upload</a>
+				<a href="upload.html" class="btn btn-outline btn-lg">Upload</a>
 			</div>
 			</div>
 
 			<script>
 				$( ".select2" ).select2( {
 					theme: "bootstrap",
-					placeholder: "Select a Species",
+					placeholder: "",
 					maximumSelectionSize: 6
 				} );
+
+
+
 
 				$( ":checkbox" ).on( "click", function() {
 					$( this ).parent().nextAll( "select" ).prop( "disabled", !this.checked );
