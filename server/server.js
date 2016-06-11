@@ -107,6 +107,20 @@ server.route({
     }
 });
 
+server.route({
+    method: 'POST',
+    path: '/createFasta/{name}',
+    handler: function (request, reply) {
+        
+        fs.writeFile(fileName, output, function (err) {
+        if(err){
+                   console.log("An error ocurred creating the file "+ err.message);
+                   }
+        });
+        createFastaFile(output);
+    }
+});
+
 server.start((err) => {
 
     if (err) {
