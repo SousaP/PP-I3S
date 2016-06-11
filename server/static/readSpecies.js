@@ -1,7 +1,12 @@
 var speciesData = function () {
-	$.get('resources/species_list.txt', function(data) {
-		var lines = data.split('\n');
-		var array = [];
+var array = [];
+	$.ajax({
+     async: false,
+     type: 'GET',
+     url: 'resources/species_list.txt',
+     success: function(data) {
+      	var lines = data.split('\n');
+		
 		var item = {};
 		for(var line = 0; line < lines.length; line++){
 			item['id'] = lines[line].split(' ').join('_');
@@ -9,12 +14,24 @@ var speciesData = function () {
 			array.push(item);
 			item = {};
 		}
-		return array;
-	});
+     }
+});
+	return array;
 }
 
-$(function() {
-	var ret = speciesData();
-	console.log(ret);
-});
 
+$(function () {
+  // create demo data
+  var dummyData = speciesData();
+  // set initial value(s)
+
+
+  // init select 2
+  $('#slElem').select2({
+    data             : dummyData,
+    theme: "bootstrap",
+    placeholder: "",
+    maximumSelectionSize: 6,
+    pagination: {more: true}
+  });
+});
