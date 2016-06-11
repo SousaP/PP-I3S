@@ -32,6 +32,14 @@ server.route({
 
 server.route({
     method: 'GET',
+    path: '/folder/{foldername}',
+     handler: function (request, reply) {
+        reply.file('resources/' + request.params.filename);
+    }
+});
+
+server.route({
+    method: 'GET',
     path: '/{folder}/{filename}',
      handler: function (request, reply) {
         reply.file('resources/' + request.params.folder + '/' + request.params.filename);
