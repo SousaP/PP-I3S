@@ -34,7 +34,26 @@ server.route({
     method: 'GET',
     path: '/folder/{foldername}',
      handler: function (request, reply) {
-        reply.file('resources/' + request.params.filename);
+		 
+		 var array = [];
+		 var item = {};
+		 fs.readdir('resources/BIOGRID', function (err, files) {
+		  if (err) {
+			console.log(err);
+			return;
+		  }
+		  console.log(files);
+		  for(var file = 0; file < files.length; file++){
+			  if(files[file].indexOf(request.params.foldername) > -1){
+				  item['id'] = files[file];
+				  item['text'] = files[file];
+				  array.push(item);
+			  }
+			  item = {};
+			}
+			reply(array);
+		});
+		
     }
 });
 
