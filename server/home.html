@@ -10,10 +10,10 @@
   <link rel="stylesheet" href="static/gh-pages.css">
   <script src="static/jquery.js"></script>
   <script src="static/readSpecies.js"></script>
-  <script src="static/completeGenes.js"></script>
+  <!--script src="static/completeGenes.js"></script>
   <script src="static/completeInteractoms.js"></script>
   <script src="static/getCorrespondences.js"></script>
-  <script src="static/select2.min.js"></script>
+  <script src="static/select2.min.js"></script-->
 </head>
 <body>
   <div class="jumbotron">
@@ -30,67 +30,13 @@
             <option></option>
           </select>
         </div>
-        <div class="select2-wrapper">
-        <h2>Select a gene</h2>
-          <select label="Genes List" class="form-control input-lg select2" dir="rtl" id="glElem">
-            <option></option>
-          </select>
-        </div>
-        <div class="select2-wrapper interectlist">
-        <h2>Select a Interactions file</h2>
-          <select label="Interactoms List" class="form-control input-lg select2" dir="rtl" id="ilElem" 
-          onchange="getCorrespondences('#glElem', '#ilElem')">
-            <option></option>
-          </select>
-        </div>
-      </div>
-    
-
-      
-      <div class="col-md-6">
-      <h2> Species 2 </h2>
-        <div class="select2-wrapper">
-        <h2>Select a Species</h2>
-          <select label="Species List" class="form-control input-lg select2" dir="rtl" 
-          onchange="completeGenes('#glElem2', '#slElem2');completeInteractoms('#ilElem2', '#slElem2')" id="slElem2">
-            <option></option>
-          </select>
-        </div>
-        <div class="select2-wrapper">
-        <h2>Select a gene</h2>
-          <select label="Genes List" class="form-control input-lg select2" dir="rtl" id="glElem2">
-            <option></option>
-          </select>
-        </div>
-        <div class="select2-wrapper">
-        <h2>Select a Interactions file</h2>
-          <select label="Interactoms List" class="form-control input-lg select2" dir="rtl" id="ilElem2"
-          onchange="getCorrespondences('#glElem', '#ilElem')">
-            <option></option>
-          </select>
-        </div>
         
-      </div>
       </div>
         <a href="#" class="btn btn-outline btn-lg">Compare</a>
         <a href="upload" class="btn btn-outline btn-lg">Upload</a>
       </div>
       </div>
-
-      <script>
-        $( ".select2" ).select2( {
-          theme: "bootstrap",
-          placeholder: "",
-          maximumSelectionSize: 6
-        } );
-
-
-
-
-        $( ":checkbox" ).on( "click", function() {
-          $( this ).parent().nextAll( "select" ).prop( "disabled", !this.checked );
-        });
-      </script>
+	  
       
 
     </body>
