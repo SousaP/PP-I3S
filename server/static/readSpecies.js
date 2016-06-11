@@ -34,4 +34,12 @@ $(function () {
     maximumSelectionSize: 6,
     pagination: {more: true}
   });
+
+  $('#slElem2').select2({
+    data             : dummyData,
+    theme: "bootstrap",
+    placeholder: "",
+    maximumSelectionSize: 6,
+    pagination: {more: true}
+  });
 });
