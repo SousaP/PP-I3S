@@ -1,10 +1,21 @@
-'use strict';
+    'use strict';
 
 const Hapi = require('hapi');
 var fs = require('fs');
-
+var exec = require('child_process').exec;
 const server = new Hapi.Server();
 server.connection({ port: process.env.PORT || 3010 });
+
+
+var child = exec('blastp',
+  function (error, stdout, stderr) {
+    console.log('stdout: ' + stdout);
+    console.log('stderr: ' + stderr);
+    if (error !== null) {
+      console.log('exec error: ' + error);
+    }
+});
+
 
 server.route({
     method: 'GET',
