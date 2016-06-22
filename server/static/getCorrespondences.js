@@ -1,6 +1,4 @@
  function createFastaFile(genes){
-	var fs = require('fs');
-	var path = require('path');
 	var specie = $('#slElem').val();
 	var filePath = 'resources/fasta/' + specie + '_fasta.txt';
 	var fileName = 'resources/temp/modified_fasta_temp.txt';
@@ -28,7 +26,7 @@
 			  type: "POST",
 			  url: 'createFasta/modified_fasta_temp.txt',
 			  data: output,
-			  dataType: text
+			  dataType: 'text'
 			});
 		});
 	});
