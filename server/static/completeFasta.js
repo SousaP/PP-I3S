@@ -8,21 +8,13 @@
 		url: 'fasta/' + specie + '_fasta.txt',
 		success: function(data) {
 			var lines = data.split('\n');
+			var num = 1;
 			for(var line = 0; line < lines.length; line++){
 				var temp = lines[line];
 				if(temp.indexOf("#") > -1 || temp == ""){
 					
 				}
-				else{
-					output += temp;
-				}
-			}
-			var lines = output.split('>');
-			var num = 1;
-			output = "";
-			for(var line = 0; line < lines.length; line++){
-				var temp = lines[line];
-				if(temp.indexOf(">") > -1){
+				else if(temp.indexOf("#") > -1){
 					output += ">seq" + num;
 					num++;
 				}
