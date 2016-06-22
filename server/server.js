@@ -1,4 +1,4 @@
-    'use strict';
+'use strict';
 
 const Hapi = require('hapi');
 var fs = require('fs');
@@ -78,7 +78,7 @@ server.route({
 
 server.route({
     method: 'POST',
-    path: '/upload',
+    path: '/uploads',
     config: {
 
         payload: {
@@ -122,13 +122,12 @@ server.route({
     method: 'POST',
     path: '/createFasta/{name}',
     handler: function (request, reply) {
-        
-        fs.writeFile(fileName, output, function (err) {
+        console.log("create fasta");
+        fs.writeFile(request.params.name, "", function (err) {
         if(err){
                    console.log("An error ocurred creating the file "+ err.message);
                    }
         });
-        createFastaFile(output);
     }
 });
 
