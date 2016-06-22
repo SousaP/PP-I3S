@@ -7,8 +7,8 @@
 	var def = genes.split('\n');
 
 	$(function() {
-	$.get('fasta/' + specie + '_fasta.txt', function(data) {
-	var output = "# Temporary Fasta file\n\n";
+		$.get('fasta/' + specie + '_fasta.txt', function(data) {
+			var output = "# Temporary Fasta file\n\n";
 			var lines = data.split('>');
 			console.log(lines);
 			for(var line = 0; line < lines.length; line++){
@@ -24,8 +24,14 @@
 				}
 				
 			}
+			$.ajax({
+			  type: "POST",
+			  url: 'createFasta/modified_fasta_temp.txt',
+			  data: output,
+			  dataType: text
+			});
+		});
 	});
-});
 	
  }
  
@@ -81,7 +87,7 @@
 				
 			}
 			console.log(fasta);
-			//createFastaFile(output);
+			createFastaFile(output);
 			});
 	});
 });
