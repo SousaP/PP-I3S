@@ -1,12 +1,12 @@
- function createFastaFile(genes){
+function createFastaFile(genes){
 	var specie = $('#slElem').val();
 	var filePath = 'resources/fasta/' + specie + '_fasta.txt';
 	var fileName = 'resources/temp/modified_fasta_temp.txt';
 	var def = genes.split('\n');
 
 	$(function() {
+		var output = "# Temporary Fasta file\n\n";
 		$.get('fasta/' + specie + '_fasta.txt', function(data) {
-			var output = "# Temporary Fasta file\n\n";
 			var lines = data.split('>');
 			console.log(lines);
 			for(var line = 0; line < lines.length; line++){
@@ -25,13 +25,12 @@
 			$.ajax({
 			  type: "POST",
 			  url: 'createFasta/modified_fasta_temp.txt',
-			  data: output,
+			  data: {'data': output},
 			  dataType: 'text'
 			});
 		});
 	});
-	
- }
+}
  
  function getCorrespondences(filter, master){
     

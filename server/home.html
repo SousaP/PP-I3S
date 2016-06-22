@@ -14,6 +14,7 @@
   <script src="static/completeInteractoms.js"></script>
   <script src="static/getCorrespondences.js"></script>
   <script src="static/select2.full.js"></script>
+  <script src="static/completeFasta.js"></script>
   
   <!--onchange="getCorrespondences('#glElem', '#ilElem')"-->
 </head>
@@ -53,7 +54,7 @@
         <div class="select2-wrapper" >
         <h2>Select a Species</h2>
           <select label="Species List" class="form-control input-lg select2" dir="rtl" 
-          onchange="completeGenes('#glElem2', '#slElem2');completeInteractoms('#ilElem2', '#slElem2');" id="slElem2">
+          onchange="completeFasta();" id="slElem2">
             <option></option>
           </select>
         </div>
