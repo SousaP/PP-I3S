@@ -123,10 +123,12 @@ server.route({
     path: '/createFasta/{name}',
     handler: function (request, reply) {
         console.log("create fasta");
-        fs.writeFile(request.params.name, "", function (err) {
+        fs.writeFile('resources/temp/'+request.params.name, request.payload.data, function (err) {
         if(err){
                    console.log("An error ocurred creating the file "+ err.message);
                    }
+                   else
+                    reply(JSON.stringify("ok"));
         });
     }
 });
