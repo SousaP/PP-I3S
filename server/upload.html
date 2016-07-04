@@ -9,62 +9,61 @@
 	<link rel="stylesheet" href="static/select2.min.css">
 	<link rel="stylesheet" href="static/select2-bootstrap.css">
 	<link rel="stylesheet" href="static/gh-pages.css">
-	<script>window.$ = window.jQuery = require('./js/jquery.js');</script>
 	<script src="static/jquery.js"></script>
+	<script src="static/readSpecies.js"></script>
 	<script src="static/select2.min.js"></script>
 	<script src="static/upload_page.js"></script>
 </head>
 <body>
 	<div class="jumbotron">
 		<div class="col-md-12">
+			<form action="uploads" method="post" enctype="multipart/form-data">
 
-			
-			<div class="select2-wrapper" >
-				<h2> File Type </h2>
-				<select label="Species List" class="form-control input-lg select2" dir="rtl" 
-				onchange="" id="slElem">
-				<option ></option>
-				<option value="BIOGRID">BIOGRID</option>
-				<option value="Dictionary">Dictionary</option>
-				<option value="FASTA">FASTA</option>
-			</select>
-		</div>
-		<div class="select2-wrapper">
-			<h2>Select a species</h2>
-			<select label="Genes List" class="form-control input-lg select2" dir="rtl" id="glElem">
-				<option></option>
-			</select>
+				<div class="select2-wrapper" >
+					<h2> File Type </h2>
+					<select label="Species List" name="type" class="form-control input-lg select2" dir="rtl" 
+					onchange="" required>
+					<option ></option>
+					<option value="BIOGRID">BIOGRID</option>
+					<option value="dictionary">Dictionary</option>
+					<option value="fasta">FASTA</option>
+				</select>
+			</div>
+			<div class="select2-wrapper">
+				<div class="select2-wrapper" >
+					<h2>Select a Species</h2>
+					<select label="Species List" name="species" class="form-control input-lg select2" dir="rtl" 
+					onchange="" id="slElem" required>
+					<option></option>
+				</select>
+			</div>
 		</div>
 
 
 		<div class="fileupload fileupload-new" data-provides="fileupload">
 			<span class="btn btn-primary btn-file"><span class="fileupload-new">Select file</span>
-			<span class="fileupload-exists">Change</span>         <input type="file" /></span>
+			<span class="fileupload-exists">Change</span>         <input name="file" type="file" required/></span>
 			<span class="fileupload-preview"></span>
 			<a href="#" class="close fileupload-exists" data-dismiss="fileupload" style="float: none">×</a>
 		</div>
-	</div>
-	
 
-	
-	<a href="#" class="btn btn-outline btn-lg">Upload</a>
-	<a href="home" class="btn btn-outline btn-lg">Back</a>
-	
-	<script>
-		$( ".select2" ).select2( {
-			theme: "bootstrap",
-			placeholder: "",
-			maximumSelectionSize: 6
-		} );
+		<button type="submit" class="btn btn-outline btn-lg">Upload</button>
+		<a href="home" class="btn btn-outline btn-lg">Back</a>
 
+	</form>
+</div>
 
+<script>
+	$( ".select2" ).select2( {
+		theme: "bootstrap",
+		placeholder: "",
+		maximumSelectionSize: 6
+	} );
+	$( ":checkbox" ).on( "click", function() {
+		$( this ).parent().nextAll( "select" ).prop( "disabled", !this.checked );
+	});
+</script>
 
-
-		$( ":checkbox" ).on( "click", function() {
-			$( this ).parent().nextAll( "select" ).prop( "disabled", !this.checked );
-		});
-	</script>
-	
 
 </body>
 </html>

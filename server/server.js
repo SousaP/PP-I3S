@@ -89,11 +89,10 @@ server.route({
 
         handler: function (request, reply) {
 
-           console.log(request);
+           console.log(request.payload);
            var data = request.payload;
            if (data.file) {
-            var name = data.file.hapi.filename;
-            var path = __dirname + "/uploads/" + name;
+            var path = __dirname + "/resources/" + request.payload.type + "/" + request.payload.species.replace(' ', '_').replace('\r\n', '') + "_"+request.payload.type+".txt";
             var file = fs.createWriteStream(path);
 
             console.log(path);
@@ -106,11 +105,10 @@ server.route({
 
             data.file.on('end', function (err) { 
                 var ret = {
-                    filename: data.file.hapi.filename,
+                    filename: request.payload.species.replace(' ', '_').replace('\r\n', '') + "_"+request.payload.type+".txt",
                     headers: data.file.hapi.headers
                 }
-                console.log(JSON.stringify(ret));
-                reply(JSON.stringify(ret));
+                reply.redirect('upload');
             })
         }
 
