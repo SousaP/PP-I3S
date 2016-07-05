@@ -37,30 +37,50 @@ server.route({
     method: 'GET',
     path: '/compare',
     handler: function (request, reply) {
-        var child = exec('makeblastdb -in ' + __dirname + '/resources/temp/codestemp.txt -dbtype prot -parse_seqids -out ' +
-		__dirname + '/resources/temp/fastatempdb',
-		function (error, stdout, stderr) {
-		console.log('stdout: ' + stdout);
-		console.log('stderr: ' + stderr);
-		if (error !== null) {
-		  console.log('exec error: ' + error);
+        fs.readdir('resources/temp', function (err, files) {
+        if (err) {
+         console.log(err);
+         return;
 		}
-		else{
-			var grandchild = exec('blastp -query ' + __dirname 
-			+ '/resources/temp/modified_fasta_temp.txt -db ' + __dirname 
-			+ '/resources/temp/fastatempdb -evalue 0.05 -num_descriptions 500 -outfmt 6 -out ' + 
-			__dirname + '/resources/temp/blastoutput',
-			function (error, stdout, stderr) {
-			console.log('stdout: ' + stdout);
-			console.log('stderr: ' + stderr);
+		var index = 1;
+		for(var file = 0; file < files.length; file++, index++){
+			if(files[file].indexOf('codestemp') > -1){
+				var child = exec('makeblastdb -in ' + __dirname + '/resources/temp/' + 
+				files[file] +' -dbtype prot -parse_seqids -out ' +
+				__dirname + '/resources/temp/fastatempdb' + index,
+				function (error, stdout, stderr) {
+				console.log('stdout: ' + stdout);
+				console.log('stderr: ' + stderr);
 				if (error !== null) {
-				console.log('exec error: ' + error);
+				  console.log('exec error: ' + error);
 				}
+				})
+				var bool = 1;
+				while(bool)
+				child.on('exit', function (exitCode) {
+				bool =0;
+				});
 			}
-		)}
-		})}
-});
+		}
+	})
+}});
 
+//code to parse the results from the first specie in th dbtype
+/*
+	var grandchild = exec('blastp -query ' + __dirname 
+					+ '/resources/temp/modified_fasta_temp.txt -db ' + __dirname 
+					+ '/resources/temp/fastatempdb -evalue 0.05 -num_descriptions 500 -outfmt 6 -out ' + 
+					__dirname + '/resources/temp/blastoutput' + index,
+					function (error, stdout, stderr) {
+					console.log('stdout: ' + stdout);
+					console.log('stderr: ' + stderr);
+						if (error !== null) {
+						console.log('exec error: ' + error);
+						}
+					}
+				)
+				*/
+				
 server.route({
     method: 'GET',
     path: '/resources/{filename}',
@@ -168,21 +188,31 @@ var output = "";
           if (err) throw err;
           var lines = data.toString().split('\n');
           var num = 1;
+		  var files = 1;
           for(var line = 0; line < lines.length; line++){
-            var temp = lines[line];
+			var temp = lines[line];
             if(temp.indexOf("#") > -1 || temp == ""){
 
             }
             else if(temp.indexOf(">") > -1){
+				if(num%1000 == 0){
+					fs.writeFile('resources/temp/codestemp' + files + '.txt',output, function (err) {
+					if(err){
+					 console.log("An error ocurred creating the file "+ err.message);
+					 }
+					});
+					files++;
+					output = '';
+				}
                 output += ">seq" + num + "\n";
                 num++;
             }
             else{
                 output += temp;
             }
-        }
-
-        fs.writeFile('resources/temp/codestemp.txt',output, function (err) {
+		  }
+		  
+		  fs.writeFile('resources/temp/codestemp' + files + '.txt',output, function (err) {
             if(err){
              console.log("An error ocurred creating the file "+ err.message);
          }
