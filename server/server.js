@@ -33,36 +33,36 @@ server.route({
     }
 });
 
+function createChild(code,nr)
+{
+
+    fs.exists(__dirname + '/resources/temp/' + 
+                code + nr +'.txt', function(exists) {
+    if (exists) {
+     var child = exec('makeblastdb -in ' + __dirname + '/resources/temp/' + 
+                code + nr +'.txt -dbtype prot -parse_seqids -out ' +
+                __dirname + '/resources/temp/fastatempdb' + nr,
+                function (error, stdout, stderr) {
+                console.log('stdout: ' + stdout);
+                console.log('stderr: ' + stderr);
+                })
+                child.on('exit', function (exitCode) {
+                
+                createChild(code,++nr);
+                });
+    }
+});
+
+    
+
+}
+
+
 server.route({
     method: 'GET',
     path: '/compare',
     handler: function (request, reply) {
-        fs.readdir('resources/temp', function (err, files) {
-        if (err) {
-         console.log(err);
-         return;
-		}
-		var index = 1;
-		for(var file = 0; file < files.length; file++, index++){
-			if(files[file].indexOf('codestemp') > -1){
-				var child = exec('makeblastdb -in ' + __dirname + '/resources/temp/' + 
-				files[file] +' -dbtype prot -parse_seqids -out ' +
-				__dirname + '/resources/temp/fastatempdb' + index,
-				function (error, stdout, stderr) {
-				console.log('stdout: ' + stdout);
-				console.log('stderr: ' + stderr);
-				if (error !== null) {
-				  console.log('exec error: ' + error);
-				}
-				})
-				var bool = 1;
-				while(bool)
-				child.on('exit', function (exitCode) {
-				bool =0;
-				});
-			}
-		}
-	})
+        createChild("codestemp",1);
 }});
 
 //code to parse the results from the first specie in th dbtype
