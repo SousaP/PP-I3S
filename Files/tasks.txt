@@ -53,5 +53,6 @@ Running Blast
 
     - ask for the desired expect value: use 0.05 as default
     - ask for the desired number of descriptions: use 500 (meaning no limit) as default
-    - use the following command that calls the executable blastp: blastp -query queryname -db fastatempdb -evalue $expect -num_descriptions $descriptions -outfmt 6 -out blastoutput
+    - use the following command that calls the executable blastp: 
+	blastp -query queryname -db fastatempdb -evalue $expect -num_descriptions $descriptions -outfmt 6 -out blastoutput
 

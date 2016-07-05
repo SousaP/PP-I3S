@@ -35,6 +35,34 @@ server.route({
 
 server.route({
     method: 'GET',
+    path: '/compare',
+    handler: function (request, reply) {
+        var child = exec('makeblastdb -in ' + __dirname + '/resources/temp/codestemp.txt -dbtype prot -parse_seqids -out ' +
+		__dirname + '/resources/temp/fastatempdb',
+		function (error, stdout, stderr) {
+		console.log('stdout: ' + stdout);
+		console.log('stderr: ' + stderr);
+		if (error !== null) {
+		  console.log('exec error: ' + error);
+		}
+		else{
+			var grandchild = exec('blastp -query ' + __dirname 
+			+ '/resources/temp/modified_fasta_temp.txt -db ' + __dirname 
+			+ '/resources/temp/fastatempdb -evalue 0.05 -num_descriptions 500 -outfmt 6 -out ' + 
+			__dirname + '/resources/temp/blastoutput',
+			function (error, stdout, stderr) {
+			console.log('stdout: ' + stdout);
+			console.log('stderr: ' + stderr);
+				if (error !== null) {
+				console.log('exec error: ' + error);
+				}
+			}
+		)}
+		})}
+});
+
+server.route({
+    method: 'GET',
     path: '/resources/{filename}',
     handler: function (request, reply) {
         reply.file('resources/' + request.params.filename);
